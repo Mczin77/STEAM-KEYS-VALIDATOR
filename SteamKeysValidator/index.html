@@ -1,48 +1,278 @@
-<!--
-@author avarozdev <http://nezosgames.com>
-github: https://github.com/tomasfjm/STEAM-KEYS-VALIDATOR
--->
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
   <title>STEAM KEYS VALIDATOR</title>
-  <link rel='stylesheet' type="text/css" href='css/style.css' />
+  <style>
+    /*
+    @author avarozdev <http://nezosgames.com>
+    github: https://github.com/tomasfjm/STEAM-KEYS-VALIDATOR
+    */
+    body {
+      overflow-x: hidden;
+      min-width: 357px;
+      background: #00262d;
+      color: #b8c7ce;
+      font-family: 'arial', Georgia, Serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #00262d;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #02ffc4;
+      border-radius: 10px;
+    }
+
+    .contenedor {
+      margin: 0 auto;
+      width: 95%;
+      padding-bottom: 60px;
+    }
+
+    #title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    #title img {
+      width: 48px;
+      height: 48px;
+    }
+    
+    h1 {
+      color: #ffffff;
+      margin-left: .5rem;
+      font-size: 2rem;
+    }
+    
+    h1>span {
+      background-color: #02ffc4;
+      border-radius: .5rem;
+      padding: .2rem;
+      font-size: 1rem;
+      color: #00262d;
+    }
+
+    .accordion {
+      background: #00262d;
+      border: 1px solid #02ffc4;
+      border-left: 3px solid #02ffc4;
+      color: #02ffc4;
+      border-radius: .55rem .55rem 0 0;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+      transition: 0.4s;
+      margin-top: 10px;
+    }
+
+    .active,
+    .accordion:hover {
+      background-color: #02ffc4;
+      border-left: 5px solid #02ffc4;
+      color: #00262d;
+    }
+
+    .panel {
+      display: none;
+      overflow: hidden;
+    }
+
+    #wrapper {
+      width: 100%;
+      background-color: #3d5058;
+      display: flex;
+      border: 1px solid #3d5058;
+    }
+
+    .decoconten {
+      padding: 5px;
+    }
+
+    .table1 {
+      flex: 1;
+      background-color: #2e383e;
+      text-align: center;
+      border-right: 1px solid #3d5058;
+    }
+
+    .table2 {
+      flex: 2;
+      background-color: #212b30;
+      text-align: center;
+    }
+
+    .table3 {
+      flex: 3;
+      background-color: #212b30;
+      text-align: center;
+    }
+
+    .boton {
+      box-shadow: rgba(0, 0, 0, .12) 0 3px 13px 1px;
+      color: #02ffc4;
+      padding: 1em 1.5em;
+      border: 1px solid #00fac5;
+      background: #00262d;
+      border-radius: .5rem;
+      width: 80%;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      font-weight: 500;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .boton:hover {
+      color: #00262d;
+      border: 1px solid #00262d;
+      background: #02ffc4;
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
+    }
+
+    .form-control {
+      display: block;
+      resize: vertical;
+      width: 100%;
+      min-height: 100px;
+      margin-bottom: 10px;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #00fac5;
+      background-color: #00262d;
+      background-clip: padding-box;
+      border: 1px solid #00fac5;
+      border-radius: 0 0 .55rem .55rem;
+      transition: all 0.3s ease-in-out;
+      outline: none;
+      box-sizing: border-box;
+    }
+    
+    .form-control::placeholder {
+      color: #00fac5;
+    }
+    
+    .form-control:focus {
+      border: 1px solid #ffffff;
+      color: #ffffff;
+    }
+
+    #message {
+      font-size: 1rem;
+      text-align: center;
+      border-radius: .55rem;
+      border: 1px solid #ffffff;
+      padding: 10px;
+      margin-bottom: 10px;
+      min-height: 20px;
+      transition: all 0.3s;
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, .90);
+      color: #02ffc4 !important;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 100;
+    }
+    
+    .footer a {
+      color: #02ffc4;
+      margin: 0 10px;
+    }
+    
+    h3 {
+      color: #ffffff;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    
+    ol {
+      text-align: left;
+      padding-left: 20px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+    }
+    
+    p {
+      text-align: left;
+      line-height: 1.5;
+    }
+    
+    .panel p, .panel ol {
+      padding: 0 15px;
+    }
+    
+    .panel {
+      border: 1px solid #02ffc4;
+      border-top: none;
+      border-radius: 0 0 .55rem .55rem;
+      padding: 10px 0;
+    }
+  </style>
 </head>
 
 <body>
   <div class="contenedor">
     <div id="title">
-      <img src="images/icon48.png" alt="">
+      <div style="width: 48px; height: 48px; background: #02ffc4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #00262d; font-weight: bold;">SKV</div>
       <h1>SKV <span>2.0</span></h1>
     </div>
     <div id='message'>Waiting for keys</div>
     <h3>Input:</h3>
     <button class="accordion" id="titlevalidar">Validate Keys</button>
-    <div class="panel" style="text-align: center;display: block!important;">
-      <textarea class="form-control" name="keys" rows="7" cols="80" id="keyslist"
-        placeholder="Paste the keys here...."></textarea>
-      <textarea class="form-control" name="codhtml" rows="8" cols="40" style="max-height:20px;display: none"
-        id="codigohtmlfull" placeholder="Scanning the html..." disabled></textarea>
+    <div class="panel" style="text-align: center; display: block;">
+      <textarea class="form-control" name="keys" rows="7" cols="80" id="keyslist" placeholder="Paste the keys here...."></textarea>
+      <textarea class="form-control" name="codhtml" rows="8" cols="40" style="max-height:20px;display: none" id="codigohtmlfull" placeholder="Scanning the html..." disabled></textarea>
 
       <a class="boton" href="#" id="click-this">VALIDATE KEYS</a>
     </div>
     <h3>Output:</h3>
     <button class="accordion" id="titlenoactivadas">List Unused keys...</button>
     <div class="panel">
-      <textarea class="form-control" name="keyssinusar" rows="8" cols="80" id="textunusedkeys"
-        placeholder="Unused keys..."></textarea>
+      <textarea class="form-control" name="keyssinusar" rows="8" cols="80" id="textunusedkeys" placeholder="Unused keys..." readonly></textarea>
     </div>
 
     <button class="accordion" id="titleactivadas">List Keys used...</button>
     <div class="panel">
-      <textarea class="form-control" name="keysusadas" rows="8" cols="80" id="keysusedtext"
-        placeholder="Keys used..."></textarea>
+      <textarea class="form-control" name="keysusadas" rows="8" cols="80" id="keysusedtext" placeholder="Keys used..." readonly></textarea>
     </div>
     
     <br><br>
     <h3>Info:</h3>
-    <button class="accordion" id="titleactivadas">Read me</button>
+    <button class="accordion">Read me</button>
     <div class="panel">
       <p><b>How to use</b></p>
       <ol>
@@ -62,14 +292,282 @@ github: https://github.com/tomasfjm/STEAM-KEYS-VALIDATOR
       <p><a href="https://twitter.com/avarozdev" target="_blank">@Avarozdev</a></p>
     </div>
 <br><br><br><br>
-    <script src='js/cdkeysvalidator.js'></script>
-    <script src='js/accordeon.js'></script>
   </div>
 
   <div class="footer">
     <p><a href="https://www.paypal.me/tomasfjm" target="_blank"><b>Buy a Coffee</b></a> | <a
         href="https://github.com/tomasfjm/STEAM-KEYS-VALIDATOR" target="_blank">Go to github</a></p>
   </div>
-</body>
 
+  <script>
+    // accordeon.js
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+
+    // getPagesSource.js
+    function DOMtoString(document_root) {
+      var html = '',
+          node = document_root.firstChild;
+      while (node) {
+        switch (node.nodeType) {
+        case Node.ELEMENT_NODE:
+          html += node.outerHTML;
+          break;
+        case Node.TEXT_NODE:
+          html += node.nodeValue;
+          break;
+        case Node.CDATA_SECTION_NODE:
+          html += '<![CDATA[' + node.nodeValue + ']]>';
+          break;
+        case Node.COMMENT_NODE:
+          html += '<!--' + node.nodeValue + '-->';
+          break;
+        case Node.DOCUMENT_TYPE_NODE:
+          html += "<!DOCTYPE " + node.name + (node.publicId ? ' PUBLIC "' + node.publicId + '"' : '') + (!node.publicId && node.systemId ? ' SYSTEM' : '') + (node.systemId ? ' "' + node.systemId + '"' : '') + '>\n';
+          break;
+        }
+        node = node.nextSibling;
+      }
+      return html;
+    }
+
+    // cdkeysvalidator.js
+    // @author avarozdev <http://nezosgames.com>
+    // github: https://github.com/tomasfjm/STEAM-KEYS-VALIDATOR
+    var keystext;
+    var independentkeys;
+    var cont1 = 0, cont2 = 0;
+    var run1, run2;
+    var activatedkeys = 0, keysnotactivated = 0;
+
+    // Simulação do listener do Chrome para fins de demonstração
+    // Em uma extensão real, isso seria gerenciado pelo runtime do Chrome
+    window.chrome = window.chrome || {};
+    window.chrome.runtime = window.chrome.runtime || {};
+    window.chrome.runtime.onMessage = window.chrome.runtime.onMessage || {
+      addListener: function(callback) {
+        // Simulação para demonstração
+        window.getSourceCallback = callback;
+      }
+    };
+    
+    window.chrome.runtime.sendMessage = window.chrome.runtime.sendMessage || function(message) {
+      // Simulação para demonstração
+      if (window.getSourceCallback && message.action === "getSource") {
+        window.getSourceCallback(message, {});
+      }
+    };
+
+    function pulsardor() {
+      // Preload web fix error: There was an error injecting script
+      keystext = document.getElementById("keyslist").value;
+      independentkeys = keystext.split("\n").filter(key => key.trim() !== "");
+      
+      if (independentkeys.length === 0) {
+        alert("Please paste some Steam keys first!");
+        return;
+      }
+      
+      alert("The keys will be validated, but keep in mind:\n" +
+        "\n"+
+        "1. This is a DEMO version for display purposes.\n" +
+        "2. In the real extension, you must be logged in https://partner.steamgames.com\n" +
+        "3. Use english language on steam partner.\n" +
+        "4. Start in url tab https://partner.steamgames.com/querycdkey/.\n" +
+        "5. Make small validations of 500 to 1000 keys maximum.\n" +
+        "6. The first checks may fail.\n" +
+        "7. DEMO: Keys will be simulated as 50% used, 50% unused.");
+
+      // Inicialização
+      cont1 = 0;
+      cont2 = 0;
+      activatedkeys = 0;
+      keysnotactivated = 0;
+      
+      // Limpar resultados anteriores
+      document.getElementById("textunusedkeys").value = "";
+      document.getElementById("keysusedtext").value = "";
+      document.getElementById("titlenoactivadas").innerHTML = "List Unused keys...";
+      document.getElementById("titleactivadas").innerHTML = "List Keys used...";
+
+      // Iniciar simulação
+      run1 = setInterval(desencadenador, 500);
+      run2 = setInterval(desencadenador2, 550);
+      document.getElementById("click-this").style.display = "none";
+      document.getElementById("keyslist").style.display = "none";
+      document.getElementById("keyslist").disabled = true;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById("click-this").addEventListener("click", function(e) {
+        e.preventDefault();
+        pulsardor();
+      });
+      
+      // Simulação do Chrome tabs e scripting APIs para demonstração
+      if (!window.chrome.tabs) {
+        window.chrome.tabs = {
+          query: function(params, callback) {
+            // Simulação
+            callback([{id: 1, active: true}]);
+          },
+          update: function(tabId, updateInfo) {
+            // Simulação - apenas para demonstração
+            console.log("Simulating navigation to:", updateInfo.url);
+          }
+        };
+      }
+      
+      if (!window.chrome.scripting) {
+        window.chrome.scripting = {
+          executeScript: function(params, callback) {
+            // Simulação
+            setTimeout(function() {
+              // Simular a obtenção do HTML da página
+              var simulatedHtml = "<html><body><div>Simulated Steam page content ";
+              // 50% chance de a chave estar ativada ou não
+              if (Math.random() > 0.5) {
+                simulatedHtml += "e24044Not Activated</div></body></html>";
+              } else {
+                simulatedHtml += "Activated Key</div></body></html>";
+              }
+              
+              document.getElementById("codigohtmlfull").value = simulatedHtml;
+              
+              if (callback) {
+                callback();
+              }
+              
+              // Disparar a verificação
+              verifykey();
+            }, 100);
+          }
+        };
+      }
+    });
+
+    function desencadenador() {
+      if (cont1 < independentkeys.length) {
+        console.log("Validating the key: " + independentkeys[cont1]);
+        opentab(independentkeys[cont1]);
+        cont1++;
+      } else {
+        clearInterval(run1);
+      }
+    }
+
+    function desencadenador2() {
+      if (cont2 < independentkeys.length) {
+        cont2++;
+        document.getElementById("titlevalidar").innerHTML = "Validating <b>(" + cont2 + "/" + independentkeys.length + ")</b>";
+        onWindowLoad();
+      } else {
+        clearInterval(run2);
+        document.getElementById("click-this").style.display = "inline-block";
+        document.getElementById("keyslist").style.display = "block";
+        document.getElementById("keyslist").disabled = false;
+        document.getElementById("titlevalidar").innerHTML = "Were validated <b>(" + independentkeys.length + ") Keys</b>";
+        downloadKeys(keysnotactivated, "textunusedkeys", 'UnusedKey');
+        downloadKeys(activatedkeys, "keysusedtext", 'Usedkey');
+        document.getElementById("keyslist").value = "";
+      }
+    }
+
+    function onWindowLoad() {
+      // Em uma extensão real, isso executaria o script na aba ativa
+      // Para demonstração, simulamos a execução
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        var tabId = tabs[0].id;
+        chrome.scripting.executeScript({
+          target: {tabId: tabId},
+          files: ["js/getPagesSource.js"]
+        }, function() {
+          // Simular o callback após a execução do script
+          setTimeout(function() {
+            verifykey();
+          }, 100);
+        });
+      });
+    }
+
+    function verifykey() {
+      var keywords = ["e24044Not"];
+      var ejemplo = "codigohtml:" + document.getElementById("codigohtmlfull").value;
+      ejemplo = ejemplo.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+      var outcome = "";
+      var pos = -1;
+      
+      keywords.forEach(function(element) {
+        pos = ejemplo.search(element.toString());
+        if (pos !== -1) {
+          outcome += "the key is not activated";
+          keysnotactivated++;
+          document.getElementById("titlenoactivadas").innerHTML = "Unused Key: <b>(" + keysnotactivated + ")</b>";
+          document.getElementById("message").innerHTML = "<i style='font-style:italic'>✓</i> Unused Key: " + independentkeys[cont2 - 1];
+          document.getElementById("message").style.color = "#00262d";
+          document.getElementById("message").style.background = "#02ffc4";
+          document.getElementById("message").style.border = "1px solid #02ffc4";
+          document.getElementById("textunusedkeys").value += independentkeys[cont2 - 1] + "\n";
+        }
+      });
+      
+      if (pos === -1 && outcome === "") {
+        outcome = "The key is activated";
+        activatedkeys++;
+        document.getElementById("titleactivadas").innerHTML = "Used key: <b>(" + activatedkeys + ")</b>";
+        document.getElementById("message").innerHTML = "<i style='font-style:italic'>✗</i> Used key: " + independentkeys[cont2 - 1];
+        document.getElementById("message").style.color = "#ffffff";
+        document.getElementById("message").style.background = "#ff2846";
+        document.getElementById("message").style.border = "1px solid #ff2846";
+        document.getElementById("keysusedtext").value += independentkeys[cont2 - 1] + "\n";
+      }
+      
+      console.log(outcome);
+    }
+
+    function opentab(urlir) {
+      chrome.tabs.query({
+        active: true,
+        currentWindow: true
+      }, function(tabs) {
+        var tab = tabs[0];
+        chrome.tabs.update(tab.id, {
+          url: 'https://partner.steamgames.com/querycdkey/cdkey?cdkey=' + urlir + '&method=Verificar'
+        });
+      });
+    }
+
+    function downloadKeys(numkeys, idtextarea, titledo) {
+      document.getElementById("message").innerHTML = "VALIDATION COMPLETE!";
+      document.getElementById("message").style.color = "#00fac5";
+      document.getElementById("message").style.background = "#00262d";
+      document.getElementById("message").style.border = "1px solid #00fac5";
+
+      var textarea = document.getElementById(idtextarea);
+      if (textarea.value.trim() === "") {
+        return;
+      }
+      
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textarea.value));
+      element.setAttribute('download', 'Steam' + titledo + '_num' + numkeys + '.txt');
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }
+  </script>
+</body>
 </html>
